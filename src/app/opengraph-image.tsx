@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/data/site";
 
+/** Static content with no request-time data — required for `output: "export"`. */
+export const dynamic = "force-static";
 export const alt = site.title;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

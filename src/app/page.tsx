@@ -11,8 +11,15 @@ import { ScrollIndicator } from "@/components/navigation/ScrollIndicator";
 import { Projects } from "@/components/projects/Projects";
 import { Stack } from "@/components/stack/Stack";
 
-/** Regenerate hourly so GitHub activity and the footer year stay current. */
-export const revalidate = 3600;
+/**
+ * No page-level `revalidate` export here on purpose: it must be a literal
+ * Next can statically analyze, so it can't be conditioned on the GitHub Pages
+ * build (which uses `output: "export"` and rejects ISR entirely). Hourly
+ * refresh of GitHub activity instead comes from the per-request `revalidate`
+ * on the fetch calls in `lib/github.ts`, which works the same way on a real
+ * Next server and is simply ignored (fetched once, at build time) under
+ * static export.
+ */
 
 export default function Home() {
   return (

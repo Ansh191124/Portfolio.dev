@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
 
+/** Static content with no request-time data — required for `output: "export"`. */
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   return [
