@@ -61,7 +61,7 @@ export function Navbar() {
               e.preventDefault();
               scrollToSection(lenis, "home", reduced);
             }}
-            className="font-mono text-[13px] font-medium tracking-[0.2em] text-[var(--color-fg)]"
+            className="-my-3 flex min-h-11 items-center font-mono text-[13px] font-medium tracking-[0.2em] text-[var(--color-fg)]"
             data-cursor="open"
           >
             {site.brand}

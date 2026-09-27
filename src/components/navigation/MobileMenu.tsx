@@ -76,8 +76,13 @@ export function MobileMenu({ open, onClose, activeId }: MobileMenuProps) {
                   href={`#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
+                    // useModalA11y stopped Lenis while the menu was open and only
+                    // resumes it once the exit animation finishes unmounting this
+                    // component (~600ms) — too late for an immediate scroll, so
+                    // resume it ourselves before asking it to scroll.
+                    lenis?.start();
+                    scrollToSection(lenis, item.id, reduced);
                     onClose();
-                    window.setTimeout(() => scrollToSection(lenis, item.id, reduced), 50);
                   }}
                   className={`flex min-h-16 items-baseline gap-4 border-b border-[var(--color-line)] py-3 ${
                     activeId === item.id ? "text-[var(--color-accent)]" : "text-[var(--color-fg)]"
